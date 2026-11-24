@@ -20,6 +20,8 @@ Find `scripts/analyze-audio.mjs` inside this skill folder:
 
 Confirm `node` (`>=20`), `ffmpeg`, and `ffprobe` are available on `PATH`. If `ffmpeg` is missing, stop and give the user the install command printed by the script (`brew install ffmpeg` on macOS, `winget install Gyan.FFmpeg` on Windows).
 
+If the user gives an Ableton `.asd` file (for example `Song.wav.asd`), it is only a cache file with no audio. Analyze the matching `.wav` in the same folder instead, and tell the user.
+
 ### 2. Run the Analyzer
 
 **Single track / bounce audit:**
