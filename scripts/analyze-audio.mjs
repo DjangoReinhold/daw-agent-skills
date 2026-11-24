@@ -563,7 +563,7 @@ function parseAstats(output) {
 function runFfmpegMeters(filePath) {
   const r128 = spawnSync(
     'ffmpeg',
-    ['-hide_banner', '-nostats', '-i', filePath, '-af', 'ebur128=peak=true:framelog=quiet', '-f', 'null', '-'],
+    ['-hide_banner', '-nostats', '-i', filePath, '-af', 'ebur128=peak=true', '-f', 'null', '-'],
     { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }
   );
   if (r128.status !== 0) {
