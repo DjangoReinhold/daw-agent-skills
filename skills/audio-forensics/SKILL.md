@@ -1,5 +1,5 @@
 ---
-name: daw-audio-forensics
+name: audio-forensics
 description: Analyze DAW bounces, pre-masters, masters, or reference tracks using zero-dependency Node.js + FFmpeg DSP telemetry (EBU R128 LUFS, True Peak dBTP, Crest Factor, 7-band spectral balance, sub-bass note Hz, stereo/mono phase correlation, BPM + Camelot key stability, 10s arrangement timeline, and A/B mix comparison) plus visual waveform and log-frequency spectrogram PNGs. Use whenever the user asks to analyze an audio file, inspect a mix bounce, check mastering readiness, or compare a WIP mix against an earlier revision or commercial reference track.
 ---
 

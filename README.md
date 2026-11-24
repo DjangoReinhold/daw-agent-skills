@@ -83,7 +83,7 @@ The result is one standalone HTML page: tick moves off, write notes, print it. C
 Once installed, open Claude Code (or Antigravity) in your studio folder and ask things like:
 
 - **Single bounce mastering check:**
-  > *"Analyze my latest bounce `~/Music/Bounces/track-v9.wav` using the daw-audio-forensics skill and tell me if the low end, headroom, and top-end tilt are ready for mastering."*
+  > *"Analyze my latest bounce `~/Music/Bounces/track-v9.wav` using the audio-forensics skill and tell me if the low end, headroom, and top-end tilt are ready for mastering."*
 
 - **Before/after revision check (`--compare`):**
   > *"Compare `track-v9.wav` against `track-v8.wav` and check whether my 300 Hz cut cleaned up the low-mid mud without thinning out the sub weight."*

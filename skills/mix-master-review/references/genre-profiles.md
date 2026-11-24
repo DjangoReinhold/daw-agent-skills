@@ -13,7 +13,7 @@ Read this after you know the genre. The same report can be healthy in one style 
 - Snoman: dance music production. It is the only source for dance sub-genres.
 - Huber and Runstein: general recording practice.
 
-None of them covers streaming loudness normalization in depth. For modern loudness targets, use the table in the `daw-audio-forensics` skill.
+None of them covers streaming loudness normalization in depth. For modern loudness targets, use the table in the `audio-forensics` skill.
 
 ---
 
@@ -113,7 +113,7 @@ Context decides, not the book. When two numbers clash, check the job.
 | Bus compression | Glue: 2 to 3 dB, ratio under 2:1, slow attack | Rock or aggressive: up to about 8 dB of pumping | Pumping is a style choice. Dance often wants about 2 dB of rhythmic pump. |
 | Multiband | Mastering: one or two bands is usually enough | A dance book gives four-band and five-band starting points | Fewer bands is safer. Use more only for a clear reason. |
 | Low-end high-pass | Katz: sharp high-pass below about 40 Hz only on a calibrated monitor | Senior: raise the cutoff until the low end changes, then back off about 15% | Per-track high-pass is fine. Do not filter a master blind. | [K-0565]
-| Loudness | Katz: keep dynamics, do not chase loudness | Dance: loud and in your face | Genre and delivery decide. Check the loudness table in the `daw-audio-forensics` skill. |
+| Loudness | Katz: keep dynamics, do not chase loudness | Dance: loud and in your face | Genre and delivery decide. Check the loudness table in the `audio-forensics` skill. |
 
 ---
 

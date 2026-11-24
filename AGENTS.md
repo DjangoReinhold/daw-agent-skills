@@ -11,7 +11,7 @@ Needs: Node 20 or newer, `ffmpeg` and `ffprobe` on PATH. If the agent has no she
    ```
    node scripts/analyze-audio.mjs "<file>" --out-dir "<out-dir>"
    ```
-   A 4-minute track takes about 10 minutes. Read `<out-dir>/report.json`, then `waveform.png` and `spectrogram.png` if you can see images.
+   A 4-minute track takes about 10 to 15 seconds. Read `<out-dir>/report.json`, then `waveform.png` and `spectrogram.png` if you can see images.
 3. **Read the skill files in this order:**
    1. `skills/audio-forensics/SKILL.md`: what the report fields mean, and the loudness table by delivery stage.
    2. `skills/mix-master-review/references/engineer-playbook.md`: the order of checks.

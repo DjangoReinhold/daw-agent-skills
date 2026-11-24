@@ -12,7 +12,7 @@ This skill answers "how do I make that move?". It works without an audio file.
 1. Know the genre. If the user did not say, ask. Genre tags in `techniques.md` show where a move fits.
 2. Read [references/techniques.md](references/techniques.md). Find the section for the problem.
 3. Give a starting value. Say it is a starting point. Tell the user to set the final value by ear, with the effect bypassed at the same loudness.
-4. If the user has an audio file and no diagnosis yet, load `daw-audio-forensics`, then `mix-master-review`, to find the problem first.
+4. If the user has an audio file and no diagnosis yet, load `audio-forensics`, then `mix-master-review`, to find the problem first.
 
 ## Where numbers come from
 

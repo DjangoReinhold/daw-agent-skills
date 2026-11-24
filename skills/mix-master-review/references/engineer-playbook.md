@@ -24,7 +24,7 @@ Then pick the delivery stage before you judge anything. The same number can be f
 | about -14 to -9.5 | Streaming-level master | Peak ceiling, dynamics, tone. |
 | above about -9.5 | Club-level master | Limiter damage, harshness, crest factor. |
 
-These cut-offs match the benchmark table in the `daw-audio-forensics` skill. Then take the numbers for that stage from that table. Use the "Pre-Master" row for a pre-master, even in a warm or deep style. The "Warm / Analog / Deep Dub" row is for finished masters in that style. If the user says what the file is for, trust the user over this table.
+These cut-offs match the benchmark table in the `audio-forensics` skill. Then take the numbers for that stage from that table. Use the "Pre-Master" row for a pre-master, even in a warm or deep style. The "Warm / Analog / Deep Dub" row is for finished masters in that style. If the user says what the file is for, trust the user over this table.
 
 ### Field paths used in this file
 
@@ -79,7 +79,7 @@ Dither rule: dither once, at the very last step, when you cut to 16-bit. A secon
 Read these together. One number alone misleads.
 
 - **Peak level is not loudness.** Two files with the same peak can sound several dB apart. Average level drives loudness.
-- **Crest factor is peak minus average.** For recorded music, 10 to 18 dB is common. Mixes straight from the DAW often sit at 14 to 18 dB, and sparse or dynamic material can reach 20 dB or a little more. The `daw-audio-forensics` pre-master range (14 to 22 dB) is the benchmark. A value just above it is not a fault. [K-0521]
+- **Crest factor is peak minus average.** For recorded music, 10 to 18 dB is common. Mixes straight from the DAW often sit at 14 to 18 dB, and sparse or dynamic material can reach 20 dB or a little more. The `audio-forensics` pre-master range (14 to 22 dB) is the benchmark. A value just above it is not a fault. [K-0521]
 - **Pre-master with `integratedLufs` between about -22 and -14 and `truePeakDbtp` between about -6 and -3:** healthy. Do not suggest limiting. Say how much gain the mastering stage will need.
 - **Gain the mastering stage will need:** target LUFS minus `integratedLufs`. Invented example: from -19.0 to -14 LUFS is 5 dB. Add that gain to `truePeakDbtp` to see where the peaks land. Then the limiter must take down the amount above the ceiling. With a true peak of -4.0 dBTP, the peaks land at +1.0 dBTP, so a -1 dBTP ceiling needs about 2 dB of peak reduction. A club-level target needs more gain, so more limiting and a lower crest factor. Give the user these numbers and let them choose the target.
 - **High crest factor (above about 14 dB):** open transients. Normal at the pre-master stage.
@@ -286,7 +286,7 @@ Mixes also get judged badly when you mix for too long without a break, and when 
 
 ## 12. How to write the answer
 
-Use the layout in `daw-audio-forensics` ("Output Format Guidelines"): verdict, metrics table, band profile, timeline, moves. Use the rules below for the content of each part. Where they differ, the layout comes from `daw-audio-forensics` and the content rules come from here.
+Use the layout in `audio-forensics` ("Output Format Guidelines"): verdict, metrics table, band profile, timeline, moves. Use the rules below for the content of each part. Where they differ, the layout comes from `audio-forensics` and the content rules come from here.
 
 1. State the stage (pre-master, streaming master, club master).
 2. List hard faults first, if any.
