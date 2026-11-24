@@ -1,0 +1,14 @@
+node_modules/
+*.wav
+*.aif
+*.aiff
+*.flac
+*.mp3
+*.m4a
+*.ogg
+*-analysis/
+analysis-out/
+.DS_Store
+Thumbs.db
+.env*
+*_credentials.json

@@ -1,0 +1,33 @@
+{
+  "name": "daw-agent-skills",
+  "version": "1.0.0",
+  "description": "Zero-dependency Audio DSP Forensics, EBU R128 Metering, Spectrogram/Waveform Vision & A/B Mix Comparator skill for Claude Code and Google Antigravity DAW Copilots.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Kenneth Henseler <https://github.com/justadakaje>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justadakaje/daw-agent-skills.git"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "daw-analyze": "./scripts/analyze-audio.mjs"
+  },
+  "scripts": {
+    "analyze": "node ./scripts/analyze-audio.mjs"
+  },
+  "keywords": [
+    "audio-analysis",
+    "daw",
+    "claude-code",
+    "antigravity",
+    "agent-skills",
+    "ffmpeg",
+    "ebur128",
+    "dsp",
+    "mastering",
+    "mixing"
+  ]
+}
