@@ -1,5 +1,5 @@
 ---
-name: daw-audio-forensics
+name: audio-forensics
 description: Analyze DAW bounces, pre-masters, masters, or reference tracks using zero-dependency Node.js + FFmpeg DSP telemetry (EBU R128 LUFS, True Peak dBTP, Crest Factor, 7-band spectral balance, sub-bass note Hz, stereo/mono phase correlation, BPM + Camelot key stability, 10s arrangement timeline, and A/B mix comparison) plus visual waveform and log-frequency spectrogram PNGs. Use whenever the user asks to analyze an audio file, inspect a mix bounce, check mastering readiness, or compare a WIP mix against an earlier revision or commercial reference track.
 ---
 
@@ -14,11 +14,14 @@ Because many CLI coding agents (including Claude Code) cannot natively hear raw 
 ## Workflow
 
 ### 1. Locate the Analyzer Script
-Find `scripts/analyze-audio.mjs` inside this skill folder:
-- **Claude Code:** `~/.claude/skills/daw-agent-skills/scripts/analyze-audio.mjs` (or `.claude/skills/daw-agent-skills/scripts/analyze-audio.mjs`)
+The script is `scripts/analyze-audio.mjs` at the **repo root**, two folders above this file (`../../scripts/analyze-audio.mjs`). Try these in order:
+- **Plugin install:** `${CLAUDE_PLUGIN_ROOT}/scripts/analyze-audio.mjs`
+- **Clone in the skills folder:** `~/.claude/skills/daw-agent-skills/scripts/analyze-audio.mjs` (or `.claude/skills/daw-agent-skills/scripts/analyze-audio.mjs`)
 - **Google Antigravity:** `~/.gemini/config/skills/daw-agent-skills/scripts/analyze-audio.mjs`
 
 Confirm `node` (`>=20`), `ffmpeg`, and `ffprobe` are available on `PATH`. If `ffmpeg` is missing, stop and give the user the install command printed by the script (`brew install ffmpeg` on macOS, `winget install Gyan.FFmpeg` on Windows).
+
+If the user gives an Ableton `.asd` file (for example `Song.wav.asd`), it is only a cache file with no audio. Analyze the matching `.wav` in the same folder instead, and tell the user.
 
 ### 2. Run the Analyzer
 
@@ -70,6 +73,20 @@ Use these engineering ranges as sanity checks when giving DAW mix/master feedbac
 | **Streaming Master (Spotify/Apple)** | `-14` to `-9.5` LUFS | `-1.0` dBTP | `9` to `14` dB | `5` to `9` LU | `>= +0.90` | `1.5%` to `6.0%` |
 | **Club / Beatport Electronic Master** | `-9.5` to `-6.5` LUFS | `-1.0` to `-0.3` dBTP | `7` to `10` dB | `4` to `7` LU | `>= +0.92` | `2.0%` to `7.0%` |
 | **Warm / Analog / Deep Dub Aesthetic** | `-12` to `-8.5` LUFS | `-1.0` dBTP | `9` to `13` dB | `5` to `8` LU | `>= +0.90` | `0.8%` to `2.5%` |
+
+Pick the row by the delivery stage first (a pre-master uses the Pre-Master row, even in a warm or deep style). The "Warm / Analog / Deep Dub" row is for finished masters in that style.
+
+### Reading order and which file wins
+
+1. Ask the user's genre. If you cannot ask, guess and say it is a guess.
+2. Run the analyzer and read `report.json` and the two PNGs (steps 2 and 3 above).
+3. Load the **mix-master-review** skill. Its [engineer-playbook.md](../mix-master-review/references/engineer-playbook.md) gives the order of checks and the "if you see X, try Y" moves. Its [genre-profiles.md](../mix-master-review/references/genre-profiles.md) shows how the numbers read in the user's genre.
+4. Load the **production-techniques** skill ([techniques.md](../production-techniques/references/techniques.md)) for how to make a fix.
+5. Write the answer.
+
+If sources disagree: what the user says beats the stage table above, the stage table beats `genre-profiles.md`, and `genre-profiles.md` beats the playbook's rules of thumb. The layout of the answer comes from the next section. The playbook's section 12 sets what goes in each part.
+
+Every claim from a book has an ID (like `K-0042`) in `knowledge/claims.jsonl`. To check where a number came from, run `node <repo-root>/scripts/kb.mjs show K-0042`.
 
 ---
 

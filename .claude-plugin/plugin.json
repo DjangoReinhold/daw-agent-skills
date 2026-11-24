@@ -1,0 +1,9 @@
+{
+  "name": "daw-agent-skills",
+  "version": "1.1.0",
+  "description": "Audio forensics (FFmpeg + Node.js telemetry), mix and master review, and production techniques, with a sourced claims database.",
+  "author": { "name": "Kenneth Henseler", "url": "https://github.com/justadakaje" },
+  "repository": "https://github.com/justadakaje/daw-agent-skills",
+  "license": "MIT",
+  "skills": "./skills"
+}

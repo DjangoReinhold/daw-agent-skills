@@ -40,29 +40,41 @@ node -v && ffmpeg -version && ffprobe -version
 
 ---
 
-### 2. Install as a Skill (Claude Code or Antigravity)
+### 2. Install (Claude Code or Antigravity)
 
-#### For Claude Code (Personal Global Skill — works in every project)
+This repo holds **three skills** in `skills/`: `audio-forensics` (runs the analyzer), `mix-master-review` (reads the report like an engineer), and `production-techniques` (how to make a move). The book facts behind the advice are in `knowledge/` (see [knowledge/README.md](./knowledge/README.md)).
+
+#### As a plugin (Claude Code)
+Add this repo as a plugin. The three skills load together and `${CLAUDE_PLUGIN_ROOT}` points at the analyzer.
+
+#### As plain skills (any agent)
+Clone the repo anywhere, then link the three skills into your skills folder:
 ```bash
-git clone https://github.com/justadakaje/daw-agent-skills.git ~/.claude/skills/daw-agent-skills
+git clone https://github.com/justadakaje/daw-agent-skills.git ~/daw-agent-skills
+node ~/daw-agent-skills/scripts/install-skills.mjs                                   # Claude Code
+node ~/daw-agent-skills/scripts/install-skills.mjs --dest ~/.gemini/config/skills    # Google Antigravity
 ```
-Or on **Windows PowerShell**:
-```powershell
-git clone https://github.com/justadakaje/daw-agent-skills.git "$HOME\.claude\skills\daw-agent-skills"
-```
+Add `--copy` to copy the folders instead of linking them. Keep the clone where it is, because the skills call the analyzer from there.
 
-*(Want it per-project inside a specific DAW/music workspace instead? Clone it to `.claude/skills/daw-agent-skills` inside that folder.)*
-
-#### For Google Antigravity
-```bash
-git clone https://github.com/justadakaje/daw-agent-skills.git ~/.gemini/config/skills/daw-agent-skills
-```
-Or on **Windows PowerShell**:
-```powershell
-git clone https://github.com/justadakaje/daw-agent-skills.git "$HOME\.gemini\config\skills\daw-agent-skills"
-```
+> **Upgrading from the single-skill layout?** Older installs cloned the repo straight into `~/.claude/skills/daw-agent-skills`. Claude Code only looks one folder deep, so it will not find the new nested `skills/`. Move the clone out of the skills folder, then run the install script above.
 
 Because `analyze-audio.mjs` uses only built-in Node.js modules (`node:fs`, `node:path`, `node:os`, `node:child_process`) and global `fetch`, **you do not even need to run `npm install`.**
+
+---
+
+## The end-of-analysis checklist
+
+After a review, the agent writes a short `notes.json` (verdict, moves in priority order, what the report cannot tell you, questions) and runs:
+
+```bash
+node scripts/make-checklist.mjs --notes notes.json --report ./out/report.json --out ./out/checklist.html
+```
+
+The result is one standalone HTML page: tick moves off, write notes, print it. Claude can also publish it as an artifact. See [examples/sample-notes.json](./examples/sample-notes.json) for the format.
+
+## Other agents
+
+[AGENTS.md](./AGENTS.md) (Codex, ChatGPT agents, and others) and [GEMINI.md](./GEMINI.md) give the same workflow without Claude-style skill loading.
 
 ---
 
@@ -71,7 +83,7 @@ Because `analyze-audio.mjs` uses only built-in Node.js modules (`node:fs`, `node
 Once installed, open Claude Code (or Antigravity) in your studio folder and ask things like:
 
 - **Single bounce mastering check:**
-  > *"Analyze my latest bounce `~/Music/Bounces/track-v9.wav` using the daw-audio-forensics skill and tell me if the low end, headroom, and top-end tilt are ready for mastering."*
+  > *"Analyze my latest bounce `~/Music/Bounces/track-v9.wav` using the audio-forensics skill and tell me if the low end, headroom, and top-end tilt are ready for mastering."*
 
 - **Before/after revision check (`--compare`):**
   > *"Compare `track-v9.wav` against `track-v8.wav` and check whether my 300 Hz cut cleaned up the low-mid mud without thinning out the sub weight."*
@@ -90,16 +102,16 @@ You can also run the analyzer directly from any terminal:
 
 ```bash
 # Single track analysis (creates ./my-bounce-analysis/ with report.json + PNGs)
-node ~/.claude/skills/daw-agent-skills/scripts/analyze-audio.mjs ./my-bounce.wav
+node ~/daw-agent-skills/scripts/analyze-audio.mjs ./my-bounce.wav
 
 # Compare WIP mix against a commercial reference track into a custom folder
-node ~/.claude/skills/daw-agent-skills/scripts/analyze-audio.mjs ./my-mix.wav --compare ./reference.flac --out-dir ./ab-check
+node ~/daw-agent-skills/scripts/analyze-audio.mjs ./my-mix.wav --compare ./reference.flac --out-dir ./ab-check
 
 # Remote URL (Dropbox links with ?dl=0 are automatically normalized to ?dl=1)
-node ~/.claude/skills/daw-agent-skills/scripts/analyze-audio.mjs "https://www.dropbox.com/scl/fi/.../track.wav?dl=0" --out-dir ./review
+node ~/daw-agent-skills/scripts/analyze-audio.mjs "https://www.dropbox.com/scl/fi/.../track.wav?dl=0" --out-dir ./review
 
 # Fast JSON-only metering without rendering PNGs
-node ~/.claude/skills/daw-agent-skills/scripts/analyze-audio.mjs ./my-bounce.wav --no-plots --json-only
+node ~/daw-agent-skills/scripts/analyze-audio.mjs ./my-bounce.wav --no-plots --json-only
 ```
 
 ### CLI Options
