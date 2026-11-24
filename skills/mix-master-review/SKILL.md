@@ -14,6 +14,11 @@ This skill reads the numbers from `daw-audio-forensics` and says what to do abou
 3. Read [references/genre-profiles.md](references/genre-profiles.md) to see how the same numbers read in that genre.
 4. For how to make a fix (EQ, compression, width, limiting), load the `production-techniques` skill.
 5. Write the answer. Use the layout in `daw-audio-forensics` ("Output Format Guidelines"). The playbook's section 12 sets what goes in each part.
+6. **End with a checklist page.** Write a `notes.json` (format and example: `examples/sample-notes.json`). It holds the verdict, the moves in priority order with a "why" and a "check" for each, what the report cannot tell, and your questions. Cite claim IDs on moves that rest on a book number. Then run:
+   ```
+   node <repo-root>/scripts/make-checklist.mjs --notes notes.json --report <out-dir>/report.json --out <out-dir>/checklist.html
+   ```
+   The page is one standalone HTML file. The producer can tick moves off, write notes, and print it. In Claude, also publish it as an artifact. In other agents, give the file path.
 
 ## Which source wins
 

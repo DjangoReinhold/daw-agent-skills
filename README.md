@@ -62,6 +62,22 @@ Because `analyze-audio.mjs` uses only built-in Node.js modules (`node:fs`, `node
 
 ---
 
+## The end-of-analysis checklist
+
+After a review, the agent writes a short `notes.json` (verdict, moves in priority order, what the report cannot tell you, questions) and runs:
+
+```bash
+node scripts/make-checklist.mjs --notes notes.json --report ./out/report.json --out ./out/checklist.html
+```
+
+The result is one standalone HTML page: tick moves off, write notes, print it. Claude can also publish it as an artifact. See [examples/sample-notes.json](./examples/sample-notes.json) for the format.
+
+## Other agents
+
+[AGENTS.md](./AGENTS.md) (Codex, ChatGPT agents, and others) and [GEMINI.md](./GEMINI.md) give the same workflow without Claude-style skill loading.
+
+---
+
 ## Example Prompts for Your DAW Copilot
 
 Once installed, open Claude Code (or Antigravity) in your studio folder and ask things like:

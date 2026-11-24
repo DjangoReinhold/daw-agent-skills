@@ -1,0 +1,40 @@
+{
+  "title": "Example Track: pre-master checklist",
+  "genre": "house (example)",
+  "stage": "pre-master",
+  "verdict": [
+    "Invented numbers, for showing the format only.",
+    "Level and peaks leave room for mastering.",
+    "Low end is centered. The kick and bass need a closer look."
+  ],
+  "moves": [
+    {
+      "priority": "high",
+      "area": "low end",
+      "do": "Sidechain the bass to the kick: ratio 3:1, fast attack, medium release.",
+      "why": "The sub share jumps on every kick hit, so the two parts fight for the same room.",
+      "check": "Bounce again. The sub peak should look steadier and the kick should hit harder at the same level.",
+      "claims": ["K-0801"]
+    },
+    {
+      "priority": "med",
+      "area": "mix bus",
+      "do": "If you add glue compression, keep it to 2 to 3 dB of gain reduction.",
+      "why": "More than that changes the feel, not just the glue.",
+      "check": "Bypass it at the same loudness and compare.",
+      "claims": ["K-0240"]
+    },
+    {
+      "priority": "low",
+      "area": "ears",
+      "do": "Check the mix on small speakers or headphones.",
+      "why": "Near-field monitors cannot show what happens below about 50 Hz.",
+      "claims": ["K-1001"]
+    }
+  ],
+  "watch": [
+    "The report cannot hear tone, groove, or taste.",
+    "Tempo can be half or double. Confirm it in your session."
+  ],
+  "questions": ["Is this going to mastering, or is it the final?"]
+}
