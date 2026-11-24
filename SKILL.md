@@ -73,6 +73,8 @@ Use these engineering ranges as sanity checks when giving DAW mix/master feedbac
 | **Club / Beatport Electronic Master** | `-9.5` to `-6.5` LUFS | `-1.0` to `-0.3` dBTP | `7` to `10` dB | `4` to `7` LU | `>= +0.92` | `2.0%` to `7.0%` |
 | **Warm / Analog / Deep Dub Aesthetic** | `-12` to `-8.5` LUFS | `-1.0` dBTP | `9` to `13` dB | `5` to `8` LU | `>= +0.90` | `0.8%` to `2.5%` |
 
+For the order of checks and the "if you see X, try Y" moves, read [references/engineer-playbook.md](references/engineer-playbook.md) before you write the answer.
+
 ---
 
 ## Output Format Guidelines for the User
